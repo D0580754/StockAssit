@@ -7,11 +7,11 @@ import datetime
 ###############################################################################
 
 # Authentication Database認證資料庫
-Authdb='資料庫名稱'
+Authdb='D0580754'
 
 ##### 資料庫連接 #####
 def constructor():
-    client = MongoClient('你的連接指令')
+    client = MongoClient("mongodb://d0580754:<password>@d0580754-shard-00-00-wshz3.mongodb.net:27017,d0580754-shard-00-01-wshz3.mongodb.net:27017,d0580754-shard-00-02-wshz3.mongodb.net:27017/test?ssl=true&replicaSet=D0580754-shard-0&authSource=admin&retryWrites=true&w=majority")
     db = client[Authdb]
     return db
    
