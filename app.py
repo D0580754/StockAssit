@@ -43,20 +43,60 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     ### 抓到顧客的資料 ###
+    #message = TextSendMessage(text="你說的是不是"+event.message.text)
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
-        return 0
-
-    
+        return 0 
     elif re.match('刪除[0-9]{4}',usespeak): # 刪除存在資料庫裡面的股票
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
-
+    else:
+        imagemap_message(usespeak)
+#@imagemap.add(MessageEvent, message=TextMessage)
+def imagemap_message(message):
+    message = ImagemapSendMessage(
+            base_url='https://imgur.com/a/szFDytZ',
+            alt_text='台股網站',
+            base_size=BaseSize(height=2000, width=2000),
+            actions=[
+                URIImagemapAction(
+                    link_uri='https://www.cnyes.com/twstock/',
+                    area=ImagemapArea(
+                        x=0, y=0, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='https://tw.stock.yahoo.com/',
+                    area=ImagemapArea(
+                        x=1000, y=0, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='https://www.wantgoo.com/',
+                    area=ImagemapArea(
+                        x=0, y=1000, width=1000, height=1000
+                    )
+                ),
+                URIImagemapAction(
+                    link_uri='https://www.twse.com.tw/zh/',
+                    area=ImagemapArea(
+                        x=1000, y=1000, width=1000, height=1000
+                    )
+                ),
+                MessageImagemapAction(
+                    text='hello',
+                    area=ImagemapArea(
+                        x=520, y=0, width=1000, height=1000
+                    )
+                )
+            ]
+    )
+    return message
 
 if __name__ == '__main__':
     app.run(debug=True)
