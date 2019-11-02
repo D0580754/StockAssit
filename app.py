@@ -60,7 +60,7 @@ def handle_message(event):
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
-            base_url='https://screenshot.net/tw/vx20ef7.jpg',
+            base_url='https://github.com/D0580754/StockAssit/blob/master/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%8B%BC%E5%9C%96.png',
             alt_text='台股網站',
             base_size=BaseSize(height=2000, width=2000),
             actions=[
