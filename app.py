@@ -56,7 +56,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif event.message.text == "台股網站":
-        line_bot_api.push_message(event.reply_token, imagemap_message())
+        line_bot_api.reply_message(event.reply_token, imagemap_message())
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -86,12 +86,6 @@ def imagemap_message():
                     link_uri='https://www.twse.com.tw/zh/',
                     area=ImagemapArea(
                         x=1000, y=1000, width=1000, height=1000
-                    )
-                ),
-                MessageImagemapAction(
-                    text='hello',
-                    area=ImagemapArea(
-                        x=520, y=0, width=1000, height=1000
                     )
                 )
             ]
