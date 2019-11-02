@@ -56,11 +56,11 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif event.message.text == "台股網站":
-        line_bot_api.reply_message(event.reply_token, imagemap_message())
+        line_bot_api.push_message(event.reply_token, imagemap_message())
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
-            base_url='https://github.com/D0580754/StockAssit/blob/master/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%8B%BC%E5%9C%96.png',
+            base_url='https://i.imgur.com/R6gvyxC.png',
             alt_text='台股網站',
             base_size=BaseSize(height=2000, width=2000),
             actions=[
