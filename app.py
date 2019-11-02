@@ -55,10 +55,10 @@ def handle_message(event):
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
-    else:
-        imagemap_message(usespeak)
+    elif event.message.text == "台股網站":
+        line_bot_api.reply_message(event.reply_token, imagemap_message)
 #@imagemap.add(MessageEvent, message=TextMessage)
-def imagemap_message(message):
+def imagemap_message():
     message = ImagemapSendMessage(
             base_url='https://imgur.com/a/szFDytZ',
             alt_text='台股網站',
