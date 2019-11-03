@@ -57,6 +57,8 @@ def handle_message(event):
         return 0
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
+    elif event.message.text == "功能選單":
+        line_bot_api.reply_message(event.reply_token, buttons_template())
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -92,5 +94,41 @@ def imagemap_message():
     )
     return message
 
+def buttons_template():
+    buttonsreply = TemplateSendMessage(
+        alt_text='功能選單',
+        template=ButtonsTemplate(
+            title='請選擇功能',
+            text='股票助理提供以下功能',
+            thumbnail_image_url='顯示在開頭的大圖片網址',
+            actions=[
+                PostbackTemplateAction(
+                    label='選股功能',
+                    text='postback text',
+                    data='postback1'
+                ),
+                PostbackTemplateAction(
+                    label='指標回測',
+                    text='postback text',
+                    data='postback1'
+                ),
+                PostbackTemplateAction(
+                    label='虛擬交易',
+                    text='postback text',
+                    data='postback1'
+                ),
+                PostbackTemplateAction(
+                    label='查詢功能',
+                    text='postback text',
+                    data='postback1'
+                ),
+                MessageTemplateAction(
+                    label='使用手冊',
+                    text='歡迎使用股票助理'
+                )
+            ]
+        )
+    ) 
+    return buttonsreply
 if __name__ == '__main__':
     app.run(debug=True)
