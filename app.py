@@ -12,6 +12,11 @@ from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import *
 import mongodb
 import re
+import schedule
+import urllib.parse
+import datetime
+from bs4 import BeautifulSoup
+import time
 
 app = Flask(__name__)
 
@@ -50,6 +55,10 @@ def handle_message(event):
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
+        second_5_j = schedule.every(10).seconds.do(job)
+        while True:
+            schedule.run_pending()
+            time.sleep(3)
         return 0 
     elif re.match('刪除[0-9]{4}',usespeak): # 刪除存在資料庫裡面的股票
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
@@ -123,5 +132,30 @@ def buttons_template():
             )
     ) 
     return buttons
+
+def job():
+    data = show_user_stock_fountion()
+    for i in data:
+        stock=i['stock']
+        bs=i['bs']
+        price=i['price']
+        uid = profile.user_id
+        url = 'https://tw.stock.yahoo.com/q/q?s=' + stock 
+        list_req = requests.get(url)
+        soup = BeautifulSoup(list_req.content, "html.parser")
+        getstock= soup.find('b').text #裡面所有文字內容
+        if float(getstock):
+            if bs == '<':
+                if float(getstock) < price:
+                    get=stock + '的價格：' + getstock
+                    line_bot_api.push_message(uid, TextSendMessage(text=get))
+            else:
+                if float(getstock) > price:
+                    get=stock + '的價格：' + getstock
+                    line_bot_api.push_message(uid, TextSendMessage(text=get))
+        else:
+            line_bot_api.push_message(uid, TextSendMessage(text='這個有問題'))
+            
+
 if __name__ == '__main__':
     app.run(debug=True)
