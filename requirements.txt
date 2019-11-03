@@ -5,5 +5,5 @@ pymongo
 schedule
 datetime
 bs4
-re
+requests
 urllib.parse
