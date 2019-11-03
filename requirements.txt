@@ -6,4 +6,3 @@ schedule
 datetime
 bs4
 requests
-urllib.parse
