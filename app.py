@@ -95,7 +95,7 @@ def imagemap_message():
     return message
 
 def buttons_template():
-    buttonsreply = TemplateSendMessage(
+    buttons = TemplateSendMessage(
         alt_text='功能選單',
         template=ButtonsTemplate(
             title='請選擇功能',
@@ -104,16 +104,15 @@ def buttons_template():
             actions=[
                  MessageTemplateAction(
                     label='選股功能',
-                    text='你已點選選股功能',
-                    
+                    text='你已點選選股功能'
                 ),
                  MessageTemplateAction(
                     label='指標回測',
-                    text='你已點選指標回測功能',
+                    text='你已點選指標回測功能'
                 ),
                  MessageTemplateAction(
                     label='虛擬交易',
-                    text='你已點選虛擬交易功能',
+                    text='你已點選虛擬交易功能'
                 ),
                 MessageTemplateAction(
                     label='查詢功能',
@@ -126,6 +125,6 @@ def buttons_template():
             ]
         )
     ) 
-    return buttonsreply
+    return buttons
 if __name__ == '__main__':
     app.run(debug=True)
