@@ -58,37 +58,7 @@ def handle_message(event):
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "功能選單":
-        buttons = TemplateSendMessage(
-            alt_text='功能選單',
-            template=ButtonsTemplate(
-                title='請選擇功能',
-                text='股票助理提供以下功能',
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
-                actions=[
-                     MessageTemplateAction(
-                        label='選股功能',
-                        text='你已點選選股功能'
-                    ),
-                     MessageTemplateAction(
-                        label='指標回測',
-                        text='你已點選指標回測功能'
-                    ),
-                     MessageTemplateAction(
-                        label='虛擬交易',
-                        text='你已點選虛擬交易功能'
-                    ),
-                    MessageTemplateAction(
-                        label='查詢功能',
-                        text='你已點選查詢功能'
-                    ),
-                    MessageTemplateAction(
-                        label='使用手冊',
-                        text='歡迎使用股票助理'
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, buttons)
+        line_bot_api.reply_message(event.reply_token, buttons_template())
 
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
@@ -124,39 +94,34 @@ def imagemap_message():
             ]
     )
     return message
-"""
+
 def buttons_template():
     buttons = TemplateSendMessage(
-        alt_text='功能選單',
-        template=ButtonsTemplate(
-            title='請選擇功能',
-            text='股票助理提供以下功能',
-            thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
-            actions=[
-                 MessageTemplateAction(
-                    label='選股功能',
-                    text='你已點選選股功能'
-                ),
-                 MessageTemplateAction(
-                    label='指標回測',
-                    text='你已點選指標回測功能'
-                ),
-                 MessageTemplateAction(
-                    label='虛擬交易',
-                    text='你已點選虛擬交易功能'
-                ),
-                MessageTemplateAction(
-                    label='查詢功能',
-                    text='你已點選查詢功能'
-                ),
-                MessageTemplateAction(
-                    label='使用手冊',
-                    text='歡迎使用股票助理'
-                )
-            ]
-        )
+            alt_text='功能選單',
+            template=ButtonsTemplate(
+                    title='請選擇功能',
+                    text='股票助理提供以下功能',
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                actions=[
+                     MessageTemplateAction(
+                        label='選股功能',
+                        text='你已點選選股功能'
+                    ),
+                     MessageTemplateAction(
+                        label='指標回測',
+                        text='你已點選指標回測功能'
+                    ),
+                     MessageTemplateAction(
+                        label='虛擬交易',
+                        text='你已點選虛擬交易功能'
+                    ),
+                    MessageTemplateAction(
+                        label='查詢功能',
+                        text='你已點選查詢功能'
+                    )
+                ]
+            )
     ) 
     return buttons
-"""
 if __name__ == '__main__':
     app.run(debug=True)
