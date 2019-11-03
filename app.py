@@ -100,27 +100,24 @@ def buttons_template():
         template=ButtonsTemplate(
             title='請選擇功能',
             text='股票助理提供以下功能',
-            thumbnail_image_url='顯示在開頭的大圖片網址',
+            thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
             actions=[
-                PostbackTemplateAction(
+                 MessageTemplateAction(
                     label='選股功能',
-                    text='postback text',
-                    data='postback1'
+                    text='你已點選選股功能',
+                    
                 ),
-                PostbackTemplateAction(
+                 MessageTemplateAction(
                     label='指標回測',
-                    text='postback text',
-                    data='postback1'
+                    text='你已點選指標回測功能',
                 ),
-                PostbackTemplateAction(
+                 MessageTemplateAction(
                     label='虛擬交易',
-                    text='postback text',
-                    data='postback1'
+                    text='你已點選虛擬交易功能',
                 ),
-                PostbackTemplateAction(
+                MessageTemplateAction(
                     label='查詢功能',
-                    text='postback text',
-                    data='postback1'
+                    text='你已點選查詢功能'
                 ),
                 MessageTemplateAction(
                     label='使用手冊',
