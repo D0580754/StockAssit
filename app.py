@@ -62,10 +62,9 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif re.match('[0-9]{4}[.][TW]',usespeak):
-        search.getPrice(usespeak)
+        answer = search.getPrice(usespeak)
         #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
-        line_bot_api.push_message(uid, TextSendMessage(search.getPrice(usespeak)))
-        return 0
+        line_bot_api.reply_message(event.reply_token, answer)
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "功能選單":
@@ -134,6 +133,7 @@ def buttons_template():
             )
     ) 
     return buttons
+
 
 
 if __name__ == '__main__':

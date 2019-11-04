@@ -7,25 +7,25 @@ Created on Mon Nov  4 11:38:09 2019
 
 from suds.client import Client
 from suds.xsd.doctor import Import, ImportDoctor
+from bs4 import BeautifulSoup
 
-
-def get_webservice():
-    url="http://61.220.30.176/WebOrder/GVETransacs.asmx?WSDL"
-    imp=Import('http://www.w3.org/2001/XMLSchema',location='http://www.w3.org/2001/XMLSchema.xsd')
-    imp.filter.add('http://tempuri.org/')
-    client = Client(url, doctor=ImportDoctor(imp))
-    return client
+def get_webservice(stock):
+    url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryQuote5Price?compcode=" + stock
+    list_req = requests.get(url)
+    soup = BeautifulSoup(list_req.content)
+    r = soup.find('string').text
+    return r
 
 
 def getPrice(stock):
-    client = get_webservice()
+    client = get_webservice(stock)
     try:
         import xml.etree.cElementTree as ET
     except ImportError:
         import xml.etree.ElementTree as ET
         
-    price = client.service.QueryQuote5Price(stock, )
-    r = ET.fromstring(price)
+    #price = client.service.QueryQuote5Price(stock, )
+    r = ET.fromstring(client)
     r_new = "您查詢的股價為:\n"+"成交價:"+str(r[0][0].text)+\
                                 "\n"+"成交量:"+str(r[0][1].text)+\
                                 "\n"+"委買價:"+str(r[0][2].text)+\
