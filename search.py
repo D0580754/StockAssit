@@ -8,6 +8,7 @@ Created on Mon Nov  4 11:38:09 2019
 from suds.client import Client
 from suds.xsd.doctor import Import, ImportDoctor
 from bs4 import BeautifulSoup
+import requests
 
 def get_webservice(stock):
     url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryQuote5Price?compcode=" + stock
