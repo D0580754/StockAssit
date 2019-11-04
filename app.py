@@ -64,7 +64,8 @@ def handle_message(event):
     elif re.match('[0-9]{4}[.][TW]',usespeak):
         search.getPrice(usespeak)
         #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
-        line_bot_api.push_message(uid, TextSendMessage(search.getPrice(usespeak))
+        line_bot_api.push_message(uid, TextSendMessage(search.getPrice(usespeak)))
+        return 0
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "功能選單":
