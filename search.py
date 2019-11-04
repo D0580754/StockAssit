@@ -27,13 +27,13 @@ def getPrice(stock):
         
     #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
-    r_new = "您查詢的股價為:\n"+"成交價:"+str(r[0][0].text)+\
-                                "\n"+"成交量:"+str(r[0][1].text)+\
-                                "\n"+"委買價:"+str(r[0][2].text)+\
-                                "\n"+"委買量:"+str(r[0][22].text)+\
-                                "\n"+"委賣價:"+str(r[0][12].text)+\
-                                "\n"+"委賣量:"+str(r[0][23].text)+\
-                                "\n"+"昨收價:"+str(r[0][24].text)+\
-                                "\n"+"漲停價:"+str(r[0][25].text)+\
-                                "\n"+"跌停價:"+str(r[0][26].text)+"\n"
+    r_new = "您查詢的股價為:\n"+"成交價: "+str(r[0][0].text)+\
+                                "\n"+"成交量: "+str(r[0][1].text)+\
+                                "\n"+"委買價: "+str(r[0][2].text)+\
+                                "\n"+"委買量: "+str(r[0][22].text)+\
+                                "\n"+"委賣價: "+str(r[0][12].text)+\
+                                "\n"+"委賣量: "+str(r[0][23].text)+\
+                                "\n"+"昨收價: "+str(r[0][24].text)+\
+                                "\n"+"漲停價: "+str(r[0][25].text)+\
+                                "\n"+"跌停價: "+str(r[0][26].text)
     return r_new
