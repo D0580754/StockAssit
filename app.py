@@ -67,7 +67,7 @@ def handle_message(event):
         #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('取消委託',usespeak):#取消委託
-        answer = order.cancelOrder(usespeak[2:])
+        answer = order.cancelOrder(usespeak[4:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('[B|S]',usespeak):
         answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])
