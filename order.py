@@ -35,7 +35,7 @@ def cancelOrder(orderid):
         return r
     
 #手動委託下單功能
-def putOrder(stockid, bsaction, ordertype, volume, price):
+def putOrder(bsaction, stockid,  ordertype, volume, price):
         url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/PutOrderXML3?GMRIDStr=BCSP&CompCode="+stockid+"&Price="+price+"&Volume="+volume+"&BSAction="+bsaction+"&OrderType="+ordertype+"&IsOddLot=0&Currency=TWD&OrderNote=ROD&OCType=0&CombineNo=&OrderParameter=0&Lang=TC&str_ip=127.0.0.1"
         client = get_webservice(url)
         

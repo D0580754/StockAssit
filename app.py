@@ -63,18 +63,14 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif re.match('[0-9]{4}[.][TW]',usespeak):
-        if re.match('[0-9]{4}[.][TW][\n][B|S]',usespeak):
-            answer = order.putOrder(usespeak[0:7], usespeak[8], usespeak[10:13], usespeak[14:18], usespeak[19:])
-            line_bot_api.push_message(uid, TextSendMessage(answer))
-        else:
-            answer = search.getPrice(usespeak)
-            #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
-            line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('取消[0-9]{2}[A-Z][0-9]{9}',usespeak):#取消委託
+        answer = search.getPrice(usespeak)
+        #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('取消委託',usespeak):#取消委託
         answer = order.cancelOrder(usespeak[2:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[0-9]{4}[.][TW][\s][MKT|LMT][\s][B|S][\s][0-9][\s][0-9]',usespeak):
-        answer = order.putOrder(usespeak[0:6], usespeak[8:10], usespeak[12], usespeak[12], price)
+    elif re.match('[B|S]',usespeak):
+        answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('[TC]',usespeak):#查詢委託
         answer = search.getOrder(usespeak)
