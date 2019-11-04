@@ -65,6 +65,15 @@ def handle_message(event):
         answer = search.getPrice(usespeak)
         #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
         line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('[TC]',usespeak):
+        answer = search.getOrder(usespeak)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('[SK]',usespeak):
+        answer = search.getInStock()
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('[DL]',usespeak):
+        answer = search.getDeal()
+        line_bot_api.push_message(uid, TextSendMessage(answer))
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "功能選單":
@@ -107,27 +116,27 @@ def imagemap_message():
 
 def buttons_template():
     buttons = TemplateSendMessage(
-            alt_text='功能選單',
+            alt_text='查詢功能',
             template=ButtonsTemplate(
-                    title='請選擇功能',
-                    text='股票助理提供以下功能',
+                    title='請選擇查詢項目',
+                    text='股票助理提供以下查詢功能',
                 thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
                 actions=[
                      MessageTemplateAction(
-                        label='選股功能',
-                        text='你已點選選股功能'
+                        label='委託紀錄',
+                        text='請輸入TC'
                     ),
                      MessageTemplateAction(
-                        label='指標回測',
-                        text='你已點選指標回測功能'
+                        label='庫存紀錄',
+                        text='請輸入SK'
                     ),
                      MessageTemplateAction(
-                        label='虛擬交易',
-                        text='你已點選虛擬交易功能'
+                        label='成交紀錄',
+                        text='請輸入DL'
                     ),
                     MessageTemplateAction(
-                        label='查詢功能',
-                        text='你已點選查詢功能'
+                        label='股價查詢',
+                        text='請輸入股票代碼 ex. 2330.TW'
                     )
                 ]
             )
