@@ -63,7 +63,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif re.match('[0-9]{4}[.][TW]',usespeak):
-        if re.match('[0-9]{4}[.][TW][\s][B|S]',usespeak):
+        if re.match('[0-9]{4}[.][TW][\n][B|S]',usespeak):
             answer = order.putOrder(usespeak[0:7], usespeak[8], usespeak[10:13], usespeak[14:18], usespeak[19:])
             line_bot_api.push_message(uid, TextSendMessage(answer))
         else:
