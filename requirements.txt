@@ -6,6 +6,5 @@ schedule
 datetime
 bs4
 requests
---upgrade setuptools
 clients
 suds-py3
