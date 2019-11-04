@@ -76,7 +76,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
-    elif event.message.text == "功能選單":
+    elif event.message.text == "查詢功能":
         line_bot_api.reply_message(event.reply_token, buttons_template())
 
 #@imagemap.add(MessageEvent, message=TextMessage)
