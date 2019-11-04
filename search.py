@@ -76,7 +76,9 @@ def getInStock():
         
         #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
+    count = 0
     for country in r.findall('PortfolioAsset'):
+        count = count + 1
         AssetCode = country.get('AssetCode')
         CompName = country.get('CompName')
         Hold = country.get('Hold')
@@ -86,14 +88,18 @@ def getInStock():
         PL = country.get('PL')
         UnRealizedPL = country.get('UnRealizedPL')
         output = "您所有的庫存:\n" + "股票代碼: " + AssetCode + \
-                                "\n"+ "公司名稱: " + CompName + \
-                                "\n"+ "持有數量: " + Hold + \
-                                "\n"+ "持有成本: " + Cost + \
-                                "\n"+ "現價: " + QuotePrice + \
-                                "\n"+ "漲跌: " + UpDown + \
-                                "\n"+ "盈虧 " + PL + \
-                                "\n"+ "累積未實現損益: " + UnRealizedPL
-    return output
+                            "\n"+ "公司名稱: " + CompName + \
+                            "\n"+ "持有數量: " + Hold + \
+                            "\n"+ "持有成本: " + Cost + \
+                            "\n"+ "現價: " + QuotePrice + \
+                            "\n"+ "漲跌: " + UpDown + \
+                            "\n"+ "盈虧 " + PL + \
+                            "\n"+ "累積未實現損益: " + UnRealizedPL + "\n"
+        new_output = ''
+        for i in  range(count):
+            new_output.join(output)
+
+    return new_output
 def getDeal():
     url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryDealLogGVE3ByGMRDayRangeLiteXML_NS?GMRID=1111708496&StartDate=2019/01/02&EndDate=2019/12/20&Language=TC"
     client = get_webservice(url)
