@@ -18,6 +18,7 @@ import datetime
 from bs4 import BeautifulSoup
 import time
 import search
+import order
 
 app = Flask(__name__)
 
@@ -62,16 +63,26 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(usespeak+'已經刪除成功'))
         return 0
     elif re.match('[0-9]{4}[.][TW]',usespeak):
-        answer = search.getPrice(usespeak)
-        #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
+        if re.match('[0-9]{4}[.][TW][\s][B|S]',usespeak):
+            answer = order.putOrder(usespeak[0:7], usespeak[8], usespeak[10:13], usespeak[14:18], usespeak[19:])
+            line_bot_api.push_message(uid, TextSendMessage(answer))
+        else:
+            answer = search.getPrice(usespeak)
+            #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
+            line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('取消[0-9]{2}[A-Z][0-9]{9}',usespeak):#取消委託
+        answer = order.cancelOrder(usespeak[2:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[TC]',usespeak):
+    elif re.match('[0-9]{4}[.][TW][\s][MKT|LMT][\s][B|S][\s][0-9][\s][0-9]',usespeak):
+        answer = order.putOrder(usespeak[0:6], usespeak[8:10], usespeak[12], usespeak[12], price)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('[TC]',usespeak):#查詢委託
         answer = search.getOrder(usespeak)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[SK]',usespeak):
+    elif re.match('[SK]',usespeak):#查詢庫存
         answer = search.getInStock()
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[DL]',usespeak):
+    elif re.match('[DL]',usespeak):#查詢成交
         answer = search.getDeal()
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif event.message.text == "台股網站":
@@ -114,7 +125,7 @@ def imagemap_message():
     )
     return message
 
-def buttons_template():
+def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
     buttons = TemplateSendMessage(
             alt_text='查詢功能',
             template=ButtonsTemplate(
