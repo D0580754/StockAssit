@@ -68,7 +68,7 @@ def getOrder(TC):
                     +"----------------------"
             arr.append(output)
             
-    a = ','.join(arr)
+    a = '\n'.join(arr)
     return a
 
 def getInStock():
@@ -90,16 +90,19 @@ def getInStock():
         UpDown = country.get('UpDown')
         PL = country.get('PL')
         UnRealizedPL = country.get('UnRealizedPL')
-        
-    output = "您所有的庫存:\n" + "股票代碼: " + AssetCode + \
-                            "\n"+ "公司名稱: " + CompName + \
-                            "\n"+ "持有數量: " + Hold + \
-                            "\n"+ "持有成本: " + Cost + \
-                            "\n"+ "現價: " + QuotePrice + \
-                            "\n"+ "漲跌: " + UpDown + \
-                            "\n"+ "盈虧 " + PL + \
-                            "\n"+ "累積未實現損益: " + UnRealizedPL
-    return output
+        output = "您所有的庫存:\n" + "股票代碼: " + AssetCode + \
+                                "\n"+ "公司名稱: " + CompName + \
+                                "\n"+ "持有數量: " + Hold + \
+                                "\n"+ "持有成本: " + Cost + \
+                                "\n"+ "現價: " + QuotePrice + \
+                                "\n"+ "漲跌: " + UpDown + \
+                                "\n"+ "盈虧 " + PL + \
+                                "\n"+ "累積未實現損益: " + UnRealizedPL +"\n"\
+                                +"----------------------"
+        arr.append(output)
+            
+    a = '\n'.join(arr)
+    return a
 def getDeal():
     url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryDealLogGVE3ByGMRDayRangeLiteXML_NS?GMRID=1111708496&StartDate=2019/01/02&EndDate=2019/12/20&Language=TC"
     client = get_webservice(url)
@@ -120,13 +123,16 @@ def getDeal():
         Volume = country.get('Volume')
         fee = country.get('fee')
         logdesc = country.get('logdesc')
-    output = "成交資訊\n" + "交易時間: " + LogTime + \
-                            "\n"+ "股票代碼: " + AssetCode + \
-                            "\n"+ "公司名稱: " + CompName + \
-                            "\n"+ "買賣類型: " + BSAction + \
-                            "\n"+ "掛單類型: " + OrderType + \
-                            "\n"+ "成交價: " + Price + \
-                            "\n"+ "成交量 " + Volume + \
-                            "\n"+ "手續費 " + fee + \
-                            "\n"+ "交易訊息: " + logdesc
-    return output
+        output = "成交資訊\n" + "交易時間: " + LogTime + \
+                                "\n"+ "股票代碼: " + AssetCode + \
+                                "\n"+ "公司名稱: " + CompName + \
+                                "\n"+ "買賣類型: " + BSAction + \
+                                "\n"+ "掛單類型: " + OrderType + \
+                                "\n"+ "成交價: " + Price + \
+                                "\n"+ "成交量 " + Volume + \
+                                "\n"+ "手續費 " + fee + \
+                                "\n"+ "交易訊息: " + logdesc+"\n"\
+                                +"----------------------"
+        arr.append(output)
+    a = "\n".join(arr)
+    return a
