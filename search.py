@@ -2,7 +2,7 @@
 """
 Created on Mon Nov  4 11:38:09 2019
 
-@author: Admin
+@author: yeh
 """
 
 from suds.client import Client
@@ -46,7 +46,9 @@ def getOrder(TC):
         
     #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
+    arr = []
     for country in r.findall('Order'):
+            #i=i+1
             OrderTime = country.get('OrderTime')
             OrderID = country.get('OrderID')
             AssetID = country.get('AssetID')
@@ -55,16 +57,19 @@ def getOrder(TC):
             Volume = country.get('Volume')
             BSAction = country.get('BSAction')
             OrderType = country.get('OrderType')
-            
-    output = "委託紀錄如下:\n" + "委託時間: " + OrderTime + \
+            output ="委託時間: " + OrderTime + \
                             "\n"+ "委託ID: " + OrderID + \
                             "\n"+ "股票代碼: " + AssetID + \
                             "\n"+ "公司名稱: " + CompName + \
                             "\n"+ "委託價格: " + Price + \
                             "\n"+ "委託數量: " + Volume + \
                             "\n"+ "買賣類型: " + BSAction + \
-                            "\n"+ "掛單類型: " + OrderType
-    return output
+                            "\n"+ "掛單類型: " + OrderType+"\n"\
+                    +"----------------------"
+            arr.append(output)
+            
+    a = ','.join(arr)
+    return a
 
 def getInStock():
     url = "http://61.220.30.176/WebOrder/GVEAccount.asmx/QueryTodayPositionGve3XML_NS?TokenString=143986D99078C7FA6A0B5BCD8C00ACA4A1DB04385D50EFF4682053C7A0AA4979D7B81BE534ECF4C969E3EA65DFF55137F00EEF9BA3C9FF02C78BA63C37C6202EA694BE201140613AF586FADA1560C84FD5517892C838E79199922D9DDF92DE7626D7BE97ADF465278B4ABD03F7CDF9573B578E7BA64604142854EF2CF90DE997F75D73B2D6499FB20F6841F13751C5C906CB71B300D30C76&Language=TC&SubTotalItem=&SortItem=AssetCode%20Asc"
