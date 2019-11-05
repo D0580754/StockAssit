@@ -81,6 +81,7 @@ def getInStock():
         
         #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
+    arr = []
     for country in r.findall('PortfolioAsset'):
         AssetCode = country.get('AssetCode')
         CompName = country.get('CompName')
@@ -113,6 +114,7 @@ def getDeal():
         
         #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
+    arr = []
     for country in r.findall('GVEUserLog'):
         LogTime = country.get('LogTime')
         AssetCode = country.get('AssetCode')
