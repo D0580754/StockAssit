@@ -75,11 +75,11 @@ def handle_message(event):
     elif re.match('[TC]',usespeak):#查詢委託
         answer = search.getOrder(usespeak)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[SK]',usespeak):#查詢庫存
-        answer = search.getInStock(usespeak)
+    elif re.match('庫存',usespeak):#查詢庫存
+        answer = search.getInStock()
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[DL]',usespeak):#查詢成交
-        answer = search.getDeal(usespeak)
+    elif re.match('成交',usespeak):#查詢成交
+        answer = search.getDeal()
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
