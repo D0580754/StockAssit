@@ -5,8 +5,6 @@ Created on Mon Nov  4 11:38:09 2019
 @author: yeh
 """
 
-from suds.client import Client
-from suds.xsd.doctor import Import, ImportDoctor
 from bs4 import BeautifulSoup
 import requests
 
@@ -25,7 +23,7 @@ def getPrice(stock):
         
     #price = client.service.QueryQuote5Price(stock, )
     r = ET.fromstring(client)
-    r_new = "您查詢的股價為:\n"+"成交價: "+str(r[0][0].text)+\
+    r_new = "<您查詢的股價>\n"+"成交價: "+str(r[0][0].text)+\
                                 "\n"+"成交量: "+str(r[0][1].text)+\
                                 "\n"+"委買價: "+str(r[0][2].text)+\
                                 "\n"+"委買量: "+str(r[0][22].text)+\
@@ -36,8 +34,8 @@ def getPrice(stock):
                                 "\n"+"跌停價: "+str(r[0][26].text)
     return r_new
 
-def getOrder(TC):
-    url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryWaitingOrderListGVE3XML_NS?TokenString=143986D99078C7FA6A0B5BCD8C00ACA4A1DB04385D50EFF4682053C7A0AA4979D7B81BE534ECF4C969E3EA65DFF55137F00EEF9BA3C9FF02C78BA63C37C6202EA694BE201140613AF586FADA1560C84FD5517892C838E79199922D9DDF92DE7626D7BE97ADF465278B4ABD03F7CDF9573B578E7BA64604142854EF2CF90DE997F75D73B2D6499FB20F6841F13751C5C906CB71B300D30C76&Language="+ TC
+def getOrder():
+    url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryWaitingOrderListGVE3XML_NS?TokenString=143986D99078C7FA6A0B5BCD8C00ACA4A1DB04385D50EFF4682053C7A0AA4979D7B81BE534ECF4C969E3EA65DFF55137F00EEF9BA3C9FF02C78BA63C37C6202EA694BE201140613AF586FADA1560C84FD5517892C838E79199922D9DDF92DE7626D7BE97ADF465278B4ABD03F7CDF9573B578E7BA64604142854EF2CF90DE997F75D73B2D6499FB20F6841F13751C5C906CB71B300D30C76&Language=TC"
     client = get_webservice(url)
     try:
         import xml.etree.cElementTree as ET
@@ -57,7 +55,7 @@ def getOrder(TC):
             Volume = country.get('Volume')
             BSAction = country.get('BSAction')
             OrderType = country.get('OrderType')
-            output ="委託時間: " + OrderTime + \
+            output ="<<成交資訊>>\n" +"委託時間: " + OrderTime + \
                             "\n"+ "委託ID: " + OrderID + \
                             "\n"+ "股票代碼: " + AssetID + \
                             "\n"+ "公司名稱: " + CompName + \
@@ -67,8 +65,10 @@ def getOrder(TC):
                             "\n"+ "掛單類型: " + OrderType+"\n"\
                     +"----------------------"
             arr.append(output)
-            
-    a = '\n'.join(arr)
+    if len(arr):
+        a = "\n".join(arr)
+    else:
+        a = "目前沒有委託資訊"
     return a
 
 def getInStock():
@@ -91,7 +91,7 @@ def getInStock():
         UpDown = country.get('UpDown')
         PL = country.get('PL')
         UnRealizedPL = country.get('UnRealizedPL')
-        output = "您所有的庫存:\n" + "股票代碼: " + AssetCode + \
+        output = "<<庫存資訊>>\n" + "股票代碼: " + AssetCode + \
                                 "\n"+ "公司名稱: " + CompName + \
                                 "\n"+ "持有數量: " + Hold + \
                                 "\n"+ "持有成本: " + Cost + \
@@ -101,8 +101,11 @@ def getInStock():
                                 "\n"+ "累積未實現損益: " + UnRealizedPL +"\n"\
                                 +"----------------------"
         arr.append(output)
-            
-    a = '\n'.join(arr)
+    
+    if len(arr):
+        a = "\n".join(arr)
+    else:
+        a = "目前沒有庫存資訊"
     return a
 def getDeal():
     url = "http://61.220.30.176/WebOrder/GVETransacs.asmx/QueryDealLogGVE3ByGMRDayRangeLiteXML_NS?GMRID=1111708496&StartDate=2019/01/02&EndDate=2019/12/20&Language=TC"
@@ -125,7 +128,7 @@ def getDeal():
         Volume = country.get('Volume')
         fee = country.get('fee')
         logdesc = country.get('logdesc')
-        output = "成交資訊\n" + "交易時間: " + LogTime + \
+        output = "<<成交資訊>>\n" + "交易時間: " + LogTime + \
                                 "\n"+ "股票代碼: " + AssetCode + \
                                 "\n"+ "公司名稱: " + CompName + \
                                 "\n"+ "買賣類型: " + BSAction + \
@@ -136,5 +139,9 @@ def getDeal():
                                 "\n"+ "交易訊息: " + logdesc+"\n"\
                                 +"----------------------"
         arr.append(output)
-    a = "\n".join(arr)
+    if len(arr):
+        a = "\n".join(arr)
+    else:
+        a = "目前沒有成交資訊"
+    
     return a
