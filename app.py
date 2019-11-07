@@ -19,7 +19,6 @@ from bs4 import BeautifulSoup
 import time
 import search
 import order
-import test
 import tech
 
 app = Flask(__name__)
