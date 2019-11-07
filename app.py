@@ -80,7 +80,7 @@ def handle_message(event):
     elif re.match('庫存',usespeak):#查詢庫存
         answer = search.getInStock()
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('成交',usespeak):#查詢成交
+    elif usespeak=='成交':#查詢成交
         answer = search.getDeal()
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('熱門股',usespeak):#查詢熱門股
@@ -99,11 +99,11 @@ def handle_message(event):
         name ='pdis'
         answer = tech.url_re(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('成交價排行',usespeak):#查詢成交價排行
+    elif usespeak =='成交價排行':#查詢成交價排行
         name ='pri'
         answer = tech.url_re(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('成交值排行',usespeak):#查詢成交值排行
+    elif usespeak =='成交值排行':#查詢成交值排行
         name ='amt'
         answer = tech.url_re(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))      
