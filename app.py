@@ -19,6 +19,8 @@ from bs4 import BeautifulSoup
 import time
 import search
 import order
+import test
+import tech
 
 app = Flask(__name__)
 
@@ -57,6 +59,7 @@ def handle_message(event):
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
+        
         return 0 
     elif re.match('刪除[0-9]{4}',usespeak): # 刪除存在資料庫裡面的股票
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
@@ -70,10 +73,10 @@ def handle_message(event):
         answer = order.cancelOrder(usespeak[4:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('[B|S]',usespeak):
-        answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])
+        answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])    
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[TC]',usespeak):#查詢委託
-        answer = search.getOrder(usespeak)
+    elif re.match('查詢委託',usespeak):#查詢委託
+        answer = search.getOrder()
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('庫存',usespeak):#查詢庫存
         answer = search.getInStock()
@@ -81,6 +84,30 @@ def handle_message(event):
     elif re.match('成交',usespeak):#查詢成交
         answer = search.getDeal()
         line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('熱門股',usespeak):#查詢熱門股
+        name ='vol'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('漲幅排行',usespeak):#查詢單日漲幅排行
+        name ='up'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('跌幅排行',usespeak):#查詢單日跌幅排行
+        name ='down'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('當沖指標排行',usespeak):#查詢當沖指標排行
+        name ='pdis'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('成交價排行',usespeak):#查詢成交價排行
+        name ='pri'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))
+    elif re.match('成交值排行',usespeak):#查詢成交值排行
+        name ='amt'
+        answer = tech.url_re(name)
+        line_bot_api.push_message(uid, TextSendMessage(answer))      
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "查詢功能":
@@ -150,6 +177,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
     ) 
     return buttons
 
+        
 
 
 if __name__ == '__main__':
