@@ -103,7 +103,7 @@ def handle_message(event):
         name ='pri'
         answer = select.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif usespeak =='成交值排行':#查詢成交值排行
+    """elif usespeak =='成交值排行':#查詢成交值排行
         name ='amt'
         answer = select.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer)) 
@@ -149,7 +149,8 @@ def handle_message(event):
     elif usespeak =='主力買賣超':#查詢主力買賣超排行
         name ='ZGK_F'
         answer = select.chipface(name)
-        line_bot_api.push_message(uid, TextSendMessage('主力買賣超Top10\n'+answer))     
+        line_bot_api.push_message(uid, TextSendMessage('主力買賣超Top10\n'+answer))   
+    """  
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "查詢功能":
