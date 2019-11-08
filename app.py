@@ -19,7 +19,7 @@ from bs4 import BeautifulSoup
 import time
 import search
 import order
-import select
+import choice
 
 app = Flask(__name__)
 
@@ -85,72 +85,72 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('熱門股',usespeak):#查詢熱門股
         name ='vol'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('漲幅排行',usespeak):#查詢單日漲幅排行
         name ='up'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('跌幅排行',usespeak):#查詢單日跌幅排行
         name ='down'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('當沖指標排行',usespeak):#查詢當沖指標排行
         name ='pdis'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif usespeak =='成交價排行':#查詢成交價排行
         name ='pri'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    """elif usespeak =='成交值排行':#查詢成交值排行
+    elif usespeak =='成交值排行':#查詢成交值排行
         name ='amt'
-        answer = select.techface(name)
+        answer = choice.techface(name)
         line_bot_api.push_message(uid, TextSendMessage(answer)) 
     elif usespeak =='外資買超':#查詢外資買超排行
         name ='ZG_D'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('外資買超Top10\n'+answer))
     elif usespeak =='外資賣超':#查詢外資賣超排行
         name ='ZG_DA'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('外資賣超Top10\n'+answer))
     elif usespeak =='自營商買超':#查詢自營商買超排行
         name ='ZG_DB'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('自營商買超Top10\n'+answer))
     elif usespeak =='自營商賣超':#查詢自營商賣超排行
         name ='ZG_DC'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('自營商賣超Top10\n'+answer))
     elif usespeak =='投信買超':#查詢投信買超排行
         name ='ZG_DD'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('投信買超Top10\n'+answer))
     elif usespeak =='投信賣超':#查詢投信賣超排行
         name ='ZG_DE'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('投信賣超Top10\n'+answer))
     elif usespeak =='自營商買賣超':#查詢自營商買賣超
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('自營商買賣超Top10\n'+answer))
     elif usespeak =='投信買賣超':#查詢投信買賣超排行
         name ='ZGK_DD'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('投信買賣超Top10\n'+answer))
     elif usespeak =='主力買超':#查詢主力買超排行
         name ='ZG_F'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('主力買超Top10\n'+answer))
     elif usespeak =='主力賣超':#查詢主力賣超排行
         name ='ZG_FA'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('主力賣超Top10\n'+answer))
     elif usespeak =='主力買賣超':#查詢主力買賣超排行
         name ='ZGK_F'
-        answer = select.chipface(name)
+        answer = choice.chipface(name)
         line_bot_api.push_message(uid, TextSendMessage('主力買賣超Top10\n'+answer))   
-    """  
+             
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "查詢功能":
