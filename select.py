@@ -24,7 +24,7 @@ def chipface(name):
     a=[]
     b=[]
     for i in soup.find_all('td',class_='t3t1'):
-    a.append(i.a.text)
+        a.append(i.a.text)
     for i in range(10):
         b.append(str(a[i]))
 
