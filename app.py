@@ -232,7 +232,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
     return buttons
 
 def  carousel_template():
-    Carousel_template = TemplateSendMessage(
+    carousel = TemplateSendMessage(
         alt_text='選股',
         template=CarouselTemplate(
         columns=[
@@ -370,7 +370,7 @@ def  carousel_template():
         ]
     )
     )
-    return Carousel_template      
+    return carousel      
 
 
 if __name__ == '__main__':
