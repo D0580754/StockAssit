@@ -311,6 +311,44 @@ def  carousel_template():
                         text='自營商買超'
                     )
                 ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='自營商賣超',
+                        text='自營商賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信買超',
+                        text='投信買超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信賣超',
+                        text='投信賣超'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='主力買超',
+                        text='主力買超'
+                    ),
+                    MessageTemplateAction(
+                        label='主力賣超',
+                        text='主力賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='主力買賣超',
+                        text='主力買賣超'
+                    )
+                ]
             )
 
 
