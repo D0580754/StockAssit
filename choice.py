@@ -54,9 +54,9 @@ def EPSBPR():
     df = pd.DataFrame(jcontent['data'])
     df.columns = ['證券代號','證券名稱','殖利率(%)','股利年度','本益比',
                     '股價淨值比','財報年/季']
-    PBR = pd.to_numeric(stockdf['股價淨值比'], errors='coerce') < 0.7 # 找到股價淨值比小於0.7的股票
-    EPS = pd.to_numeric(stockdf['本益比'], errors='coerce') < 10 # 找到本益比小於13的股票
-    candidate= stockdf[(PBR & EPS)]
+    PBR = pd.to_numeric(df['股價淨值比'], errors='coerce') < 0.7 # 找到股價淨值比小於0.7的股票
+    EPS = pd.to_numeric(df['本益比'], errors='coerce') < 10 # 找到本益比小於13的股票
+    candidate= df[(PBR & EPS)]
     a=[]
     for i in candidate['證券名稱']:
         a.append(i)
