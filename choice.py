@@ -49,7 +49,6 @@ def EPSBPR():
     data = jcontent['data']
     data = [i for i in data if i[4]!='-']
     Dividend_list = sorted(data , key=lambda x: float(x[2].replace(',','')),reverse=True)[:100]
-    print(Dividend_list)
     #columns
     df = pd.DataFrame(jcontent['data'])
     df.columns = ['證券代號','證券名稱','殖利率(%)','股利年度','本益比',
