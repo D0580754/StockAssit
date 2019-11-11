@@ -208,7 +208,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
             template=ButtonsTemplate(
                     title='請選擇查詢項目',
                     text='股票助理提供以下查詢功能',
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 actions=[
                      MessageTemplateAction(
                         label='委託紀錄',
@@ -237,7 +237,7 @@ def  carousel_template():
         template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='基本面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -256,7 +256,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='技術面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -275,7 +275,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='技術面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -294,7 +294,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -313,7 +313,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -332,7 +332,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -347,6 +347,25 @@ def  carousel_template():
                     MessageTemplateAction(
                         label='主力買賣超',
                         text='主力買賣超'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='自營商買賣超',
+                        text='自營商買賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信買賣超',
+                        text='投信買賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='X',
+                        text='X'
                     )
                 ]
             )
