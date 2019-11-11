@@ -165,7 +165,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, imagemap_message())
     elif event.message.text == "查詢功能":
         line_bot_api.reply_message(event.reply_token, buttons_template())
-
+    elif event.message.text == "選股":
+        line_bot_api.reply_message(event.reply_token, carousel_template())
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -230,7 +231,146 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
     ) 
     return buttons
 
-        
+def  carousel_template():
+    Carousel_template = TemplateSendMessage(
+        alt_text='選股',
+        template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='基本面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='最近一個月營收創新高',
+                        text='營業額創新高'
+                    ),
+                    MessageTemplateAction(
+                        label='本益比<10股價淨值比<0.7',
+                        text='股價便宜'
+                    ),
+                    MessageTemplateAction(
+                        label='殖利率排行',
+                        text='殖利率排行'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='技術面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='熱門股',
+                        text='熱門股'
+                    ),
+                    MessageTemplateAction(
+                        label='漲幅排行',
+                        text='漲幅排行'
+                    ),
+                    MessageTemplateAction(
+                        label='跌幅排行',
+                        text='跌幅排行'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='技術面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='當沖指標排行',
+                        text='當沖指標排行'
+                    ),
+                    MessageTemplateAction(
+                        label='成交價排行',
+                        text='成交價排行'
+                    ),
+                    MessageTemplateAction(
+                        label='成交值排行',
+                        text='成交值排行'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='外資買超',
+                        text='外資買超'
+                    ),
+                    MessageTemplateAction(
+                        label='外資賣超',
+                        text='外資賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='自營商買超',
+                        text='自營商買超'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='自營商賣超',
+                        text='自營商賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信買超',
+                        text='投信買超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信賣超',
+                        text='投信賣超'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='主力買超',
+                        text='主力買超'
+                    ),
+                    MessageTemplateAction(
+                        label='主力賣超',
+                        text='主力賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='主力買賣超',
+                        text='主力買賣超'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://i.imgur.com/R6gvyxC.png',
+                title='籌碼面選股',
+                text='請選擇選股條件',
+                actions=[
+                    MessageTemplateAction(
+                        label='自營商買賣超',
+                        text='自營商買賣超'
+                    ),
+                    MessageTemplateAction(
+                        label='投信買賣超',
+                        text='投信買賣超'
+                    )
+                ]
+            ),
+
+
+        ]
+    )
+    )
+    return Carousel_template      
 
 
 if __name__ == '__main__':
