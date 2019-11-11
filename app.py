@@ -364,7 +364,7 @@ def  carousel_template():
                         text='投信買賣超'
                     )
                 ]
-            ),
+            )
 
 
         ]
