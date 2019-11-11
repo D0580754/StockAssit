@@ -50,15 +50,12 @@ def callback():
 #訊息傳遞區塊
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    ### 抓到顧客的資料 ###
-    #message = TextSendMessage(text="你說的是不是"+event.message.text)
     profile = line_bot_api.get_profile(event.source.user_id)
     uid = profile.user_id #使用者ID
     usespeak=str(event.message.text) #使用者講的話
     if re.match('[0-9]{4}[<>][0-9]',usespeak): # 先判斷是否是使用者要用來存股票的
         mongodb.write_user_stock_fountion(stock=usespeak[0:4], bs=usespeak[4:5], price=usespeak[5:])
         line_bot_api.push_message(uid, TextSendMessage(usespeak[0:4]+'已經儲存成功'))
-        
         return 0 
     elif re.match('刪除[0-9]{4}',usespeak): # 刪除存在資料庫裡面的股票
         mongodb.delete_user_stock_fountion(stock=usespeak[2:])
@@ -66,7 +63,6 @@ def handle_message(event):
         return 0
     elif re.match('[0-9]{4}[.][TW]',usespeak):
         answer = search.getPrice(usespeak)
-        #line_bot_api.reply_message(event.reply_token, search.getPrice(usespeak))
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('取消委託',usespeak):#取消委託
         answer = order.cancelOrder(usespeak[4:])
@@ -74,13 +70,13 @@ def handle_message(event):
     elif re.match('[B|S]',usespeak):
         answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])    
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('查詢委託',usespeak):#查詢委託
+    elif usespeak =='委託紀錄':#查詢委託
         answer = search.getOrder()
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('庫存',usespeak):#查詢庫存
+    elif re.match('庫存紀錄',usespeak):#查詢庫存
         answer = search.getInStock()
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif usespeak=='成交':#查詢成交
+    elif usespeak=='成交紀錄':#查詢成交
         answer = search.getDeal()
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif re.match('熱門股',usespeak):#查詢熱門股
@@ -215,15 +211,15 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
                 actions=[
                      MessageTemplateAction(
                         label='委託紀錄',
-                        text='請輸入TC'
+                        text='委託紀錄'
                     ),
                      MessageTemplateAction(
                         label='庫存紀錄',
-                        text='請輸入SK'
+                        text='庫存紀錄'
                     ),
                      MessageTemplateAction(
                         label='成交紀錄',
-                        text='請輸入DL'
+                        text='成交紀錄'
                     ),
                     MessageTemplateAction(
                         label='股價查詢',
