@@ -67,7 +67,7 @@ def handle_message(event):
     elif re.match('取消委託',usespeak):#取消委託
         answer = order.cancelOrder(usespeak[4:])
         line_bot_api.push_message(uid, TextSendMessage(answer))
-    elif re.match('[B|S]',usespeak):
+    elif re.match('[B|S]',usespeak): #下單
         answer = order.putOrder(usespeak[0], usespeak[2:9], usespeak[10:13], usespeak[14:18], usespeak[19:])    
         line_bot_api.push_message(uid, TextSendMessage(answer))
     elif usespeak =='委託紀錄':#查詢委託
@@ -163,7 +163,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage('股價偏便宜的股票\n'+answer))
     elif event.message.text == "台股網站":
         line_bot_api.reply_message(event.reply_token, imagemap_message())
-    elif event.message.text == "查詢功能":
+    elif event.message.text == "虛擬下單":
         line_bot_api.reply_message(event.reply_token, buttons_template())
     elif event.message.text == "選股":
         line_bot_api.reply_message(event.reply_token, carousel_template())
@@ -204,12 +204,16 @@ def imagemap_message():
 
 def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
     buttons = TemplateSendMessage(
-            alt_text='查詢功能',
+            alt_text='虛擬下單功能',
             template=ButtonsTemplate(
-                    title='請選擇查詢項目',
-                    text='股票助理提供以下查詢功能',
+                    title='請選擇服務功能',
+                    text='股票助理提供以下功能',
                 thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 actions=[
+                     MessageTemplateAction(
+                        label='下單',
+                        text='請依規定格式輸入下單資料'
+                    ), 
                      MessageTemplateAction(
                         label='委託紀錄',
                         text='委託紀錄'
@@ -221,11 +225,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
                      MessageTemplateAction(
                         label='成交紀錄',
                         text='成交紀錄'
-                    ),
-                    MessageTemplateAction(
-                        label='股價查詢',
-                        text='請輸入股票代碼 ex. 2330.TW'
-                    )
+                    )  
                 ]
             )
     ) 
