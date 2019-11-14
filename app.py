@@ -82,27 +82,27 @@ def handle_message(event):
     elif re.match('熱門股',usespeak):#查詢熱門股
         name ='vol'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer))
+        line_bot_api.push_message(uid, TextSendMessage('熱門股Top10\n'+answer))
     elif re.match('漲幅排行',usespeak):#查詢單日漲幅排行
         name ='up'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer))
+        line_bot_api.push_message(uid, TextSendMessage('漲幅排行Top10\n'+answer))
     elif re.match('跌幅排行',usespeak):#查詢單日跌幅排行
         name ='down'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer))
+        line_bot_api.push_message(uid, TextSendMessage('跌幅排行Top10\n'+answer))
     elif re.match('當沖指標排行',usespeak):#查詢當沖指標排行
         name ='pdis'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer))
+        line_bot_api.push_message(uid, TextSendMessage('當沖指標排行Top10\n'+answer))
     elif usespeak =='成交價排行':#查詢成交價排行
         name ='pri'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer))
+        line_bot_api.push_message(uid, TextSendMessage('成交價排行Top10\n'+answer))
     elif usespeak =='成交值排行':#查詢成交值排行
         name ='amt'
         answer = choice.techface(name)
-        line_bot_api.push_message(uid, TextSendMessage(answer)) 
+        line_bot_api.push_message(uid, TextSendMessage('成交值排行Top10\n'+answer)) 
     elif usespeak =='外資買超':#查詢外資買超排行
         name ='ZG_D'
         answer = choice.chipface(name)
@@ -167,6 +167,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, buttons_template())
     elif event.message.text == "選股":
         line_bot_api.reply_message(event.reply_token, carousel_template())
+    elif event.message.text == "股票小學堂":
+        line_bot_api.reply_message(event.reply_token, buttons2_template())
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -230,7 +232,34 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
             )
     ) 
     return buttons
-
+def buttons2_template(): #尚未更正: 其他使用者看不到請輸入..
+    buttons2 = TemplateSendMessage(
+            alt_text='股票小學堂',
+            template=ButtonsTemplate(
+                    title='股票小學堂',
+                    text='請選擇想了解的項目',
+                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                actions=[
+                     MessageTemplateAction(
+                        label='股票交易基本流程與規則',
+                        text='股票交易基本流程與規則'
+                    ), 
+                     MessageTemplateAction(
+                        label='專有名詞',
+                        text='專有名詞'
+                    ),
+                     MessageTemplateAction(
+                        label='如何選股',
+                        text='如何選股'
+                    ),
+                     MessageTemplateAction(
+                        label='技術指標',
+                        text='技術指標'
+                    )  
+                ]
+            )
+    ) 
+    return buttons2
 def  carousel_template():
     carousel = TemplateSendMessage(
         alt_text='選股',
