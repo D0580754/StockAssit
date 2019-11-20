@@ -414,7 +414,7 @@ def carousel_pic():
         columns=[
             ImageCarouselColumn(
                 image_url='https://i.imgur.com/jwk9I6o.png',
-                URITemplateAction(
+                action = URITemplateAction(
                     label='',
                     uri='https://i.imgur.com/jwk9I6o.png'
                 )
