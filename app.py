@@ -414,6 +414,10 @@ def carousel_pic():
         columns=[
             ImageCarouselColumn(
                 image_url='https://i.imgur.com/jwk9I6o.png'
+                    action=MessageTemplateAction(
+                        label='股票交易基本流程',
+                        text='股票交易基本流程'
+                    )
             )
         ]
     )
