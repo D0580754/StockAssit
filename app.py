@@ -169,6 +169,9 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template())
     elif event.message.text == "股票小學堂":
         line_bot_api.reply_message(event.reply_token, buttons2_template())
+    elif event.message.text == "股票交易基本流程與規則":
+        line_bot_api.reply_message(event.reply_token, carousel_pic())
+
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -404,7 +407,18 @@ def  carousel_template():
     )
     )
     return carousel      
-
+def carousel_pic():
+    Image_Carousel = TemplateSendMessage(
+        alt_text='目錄 template',
+        template=ImageCarouselTemplate(
+        columns=[
+            ImageCarouselColumn(
+                image_url='https://i.imgur.com/jwk9I6o.png'
+            )
+        ]
+    )
+    )
+    return Image_Carousel
 
 if __name__ == '__main__':
     app.run(debug=True)
