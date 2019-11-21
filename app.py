@@ -24,11 +24,11 @@ import choice
 app = Flask(__name__)
 
 # 必須放上自己的Channel Access Token
-line_bot_api = LineBotApi('ERPNiwi+kL1IVb8amT0Env9nZE6qFnrNskGFAqPSaenuWR6RyLb40DXlq/fthadzwG175trlcY/74iN0sJ1A98hLE1v2takoD7UNfNY8Fu33kIqrI8RkH9yawQsRapxHUDiYi6n5O1907qDH3LZ4BwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('b2ZZ5S9d8Uvtl6CqAQiSS2ykRn4fBehUEnj0i1PitOEe2bN+yPW7XbnZyZaYj6asN/pinquk9P2+7evxROlazavRnRUmS1NVqmvW9OVCFOTM28Pz71e7bKjbTlHTMS60pR/6TrkDjEgs1kHXLSF7HQdB04t89/1O/w1cDnyilFU=')
 # 必須放上自己的Channel Secret
-handler = WebhookHandler('54cd451ffb3d2728924e284de5f836bd')
+handler = WebhookHandler('991b83b3b7aa95da15660991d0248a3a')
 
-line_bot_api.push_message('Ud5ccf6452c79b7add21fcb8a008b0717', TextSendMessage(text='開始'))
+line_bot_api.push_message('Uc52a42025be949ba1b1e0654d6536122', TextSendMessage(text='開始'))
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
