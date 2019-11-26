@@ -55,7 +55,7 @@ def getOrder():
             Volume = country.get('Volume')
             BSAction = country.get('BSAction')
             OrderType = country.get('OrderType')
-            output ="<<成交資訊>>\n" +"委託時間: " + OrderTime + \
+            output ="<<委託資訊>>\n" +"委託時間: " + OrderTime + \
                             "\n"+ "委託ID: " + OrderID + \
                             "\n"+ "股票代碼: " + AssetID + \
                             "\n"+ "公司名稱: " + CompName + \
