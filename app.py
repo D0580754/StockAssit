@@ -170,13 +170,15 @@ def handle_message(event):
     elif event.message.text == "股票小學堂":
         line_bot_api.reply_message(event.reply_token, buttons2_template())
     elif event.message.text == "股票交易基本流程": 
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/a9GJ2NK.png', preview_image_url='https://imgur.com/a9GJ2NK.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/VHAAgdU.png', preview_image_url='https://imgur.com/VHAAgdU.png'))
     elif event.message.text == "股票交易基本規則":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/5c6XFrc.png', preview_image_url='https://imgur.com/5c6XFrc.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/o8WuFjh.png', preview_image_url='https://imgur.com/o8WuFjh.png'))
     elif event.message.text == "選股知識":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/YlULaXW.png', preview_image_url='https://imgur.com/YlULaXW.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/JGCG0MP.png', preview_image_url='https://imgur.com/JGCG0MP.png'))
     elif event.message.text == "技術指標":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/AlkCacD.png', preview_image_url='https://imgur.com/AlkCacD.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/TU1vaQ9.png', preview_image_url='https://imgur.com/AlkCacD.png'))
+    elif event.message.text == "使用教學":
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/BrhlwQr.png', preview_image_url='https://imgur.com/BrhlwQr.png'))
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
