@@ -176,7 +176,7 @@ def handle_message(event):
     elif event.message.text == "選股知識":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/JGCG0MP.png', preview_image_url='https://imgur.com/JGCG0MP.png'))
     elif event.message.text == "技術指標":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/TU1vaQ9.png', preview_image_url='https://imgur.com/AlkCacD.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/IGKydqq.png', preview_image_url='https://imgur.com/IGKydqq.png'))
     elif event.message.text == "使用教學":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/BrhlwQr.png', preview_image_url='https://imgur.com/BrhlwQr.png'))
 #@imagemap.add(MessageEvent, message=TextMessage)
