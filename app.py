@@ -218,7 +218,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
             template=ButtonsTemplate(
                     title='請選擇服務功能',
                     text='股票助理提供以下功能',
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 actions=[
                      MessageTemplateAction(
                         label='下單',
@@ -246,7 +246,7 @@ def buttons2_template(): #尚未更正: 其他使用者看不到請輸入..
             template=ButtonsTemplate(
                     title='股票小學堂',
                     text='請選擇想了解的項目',
-                thumbnail_image_url='https://imgur.com/EEmlXZ3.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 actions=[
                      MessageTemplateAction(
                         label='股票交易基本流程',
@@ -274,7 +274,7 @@ def  carousel_template():
         template=CarouselTemplate(
         columns=[
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='基本面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -293,7 +293,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='技術面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -312,7 +312,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='技術面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -331,7 +331,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -350,7 +350,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -369,7 +369,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
@@ -388,7 +388,7 @@ def  carousel_template():
                 ]
             ),
             CarouselColumn(
-                thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
+                thumbnail_image_url='https://i.imgur.com/CCohubT.jpg',
                 title='籌碼面選股',
                 text='請選擇選股條件',
                 actions=[
