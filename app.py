@@ -169,6 +169,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template())
     elif event.message.text == "股票小學堂":
         line_bot_api.reply_message(event.reply_token, buttons2_template())
+    elif event.message.text == "股票交易基本流程與規則": 
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://i.imgur.com/jwk9I6o.jpg', preview_image_url='https://i.imgur.com/jwk9I6o.jpg'))
     #elif event.message.text == "股票交易基本流程與規則":
      #   line_bot_api.reply_message(event.reply_token, carousel_pic())
 
