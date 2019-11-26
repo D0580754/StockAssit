@@ -170,10 +170,13 @@ def handle_message(event):
     elif event.message.text == "股票小學堂":
         line_bot_api.reply_message(event.reply_token, buttons2_template())
     elif event.message.text == "股票交易基本流程": 
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/rPJdVZv.png', preview_image_url='https://imgur.com/rPJdVZv.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/a9GJ2NK.png', preview_image_url='https://imgur.com/a9GJ2NK.png'))
     elif event.message.text == "股票交易基本規則":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/5c6XFrc.png', preview_image_url='https://imgur.com/5c6XFrc.png'))
-
+    elif event.message.text == "選股知識":
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/YlULaXW.png', preview_image_url='https://imgur.com/YlULaXW.png'))
+    elif event.message.text == "技術指標":
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/AlkCacD.png', preview_image_url='https://imgur.com/AlkCacD.png'))
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
     message = ImagemapSendMessage(
@@ -254,8 +257,8 @@ def buttons2_template(): #尚未更正: 其他使用者看不到請輸入..
                         text='股票交易基本規則'
                     ),
                      MessageTemplateAction(
-                        label='如何選股',
-                        text='如何選股'
+                        label='選股知識',
+                        text='選股知識'
                     ),
                      MessageTemplateAction(
                         label='技術指標',
