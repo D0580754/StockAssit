@@ -169,10 +169,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, carousel_template())
     elif event.message.text == "股票小學堂":
         line_bot_api.reply_message(event.reply_token, buttons2_template())
-    elif event.message.text == "股票交易基本流程與規則": 
+    elif event.message.text == "股票交易基本流程": 
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/rPJdVZv.png', preview_image_url='https://imgur.com/rPJdVZv.png'))
-    #elif event.message.text == "股票交易基本流程與規則":
-     #   line_bot_api.reply_message(event.reply_token, carousel_pic())
+    elif event.message.text == "股票交易基本規則":
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/5c6XFrc.png', preview_image_url='https://imgur.com/5c6XFrc.png'))
 
 #@imagemap.add(MessageEvent, message=TextMessage)
 def imagemap_message():
@@ -246,12 +246,12 @@ def buttons2_template(): #尚未更正: 其他使用者看不到請輸入..
                 thumbnail_image_url='https://i.imgur.com/l7dywjg.jpg',
                 actions=[
                      MessageTemplateAction(
-                        label='股票交易基本流程與規則',
-                        text='股票交易基本流程與規則'
+                        label='股票交易基本流程',
+                        text='股票交易基本流程'
                     ), 
                      MessageTemplateAction(
-                        label='專有名詞',
-                        text='專有名詞'
+                        label='股票交易基本規則',
+                        text='股票交易基本規則'
                     ),
                      MessageTemplateAction(
                         label='如何選股',
