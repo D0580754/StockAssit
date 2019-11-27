@@ -10,7 +10,7 @@ import requests
 
 def get_webservice(url):
     list_req = requests.get(url)
-    soup = BeautifulSoup(list_req.content)
+    soup = BeautifulSoup(list_req.content,'html.parser')
     r = soup.find('string').text
     return r
 def getPrice(stock):

@@ -150,14 +150,9 @@ def handle_message(event):
         name ='zkparse_970_NA'
         answer = choice.basicface(name)
         line_bot_api.push_message(uid, TextSendMessage('最近一月營收創新高的股票\n'+answer))
-    elif usespeak =='本益比<12':#本益比<12的股票
-        name ='zkparse_170_12'
-        answer = choice.basicface(name)
-        line_bot_api.push_message(uid, TextSendMessage('本益比<12的股票\n'+answer))
-    elif usespeak =='股價淨值<1':#股價淨值<1
-        name ='zkparse_160_1'
-        answer = choice.basicface(name)
-        line_bot_api.push_message(uid, TextSendMessage('股價淨值<1的股票\n'+answer))
+    elif usespeak =='殖利率排行':
+        answer = choice.y_ield()
+        line_bot_api.push_message(uid, TextSendMessage('殖利率排行Top25\n'+answer))
     elif usespeak =='股價便宜':
         answer = choice.EPSBPR()
         line_bot_api.push_message(uid, TextSendMessage('股價偏便宜的股票\n'+answer))

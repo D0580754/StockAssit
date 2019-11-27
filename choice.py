@@ -62,3 +62,18 @@ def EPSBPR():
 
     c = '\n'.join(a)
     return c
+def y_ield():
+    html = urlopen('https://statementdog.com/screeners/dividend_yield_ranking')
+    soup = BeautifulSoup(html)
+    a=[]
+    c=[]
+    for i in soup.find_all('ul',class_='ranking-item'):
+        a.append(i.a.text)
+
+
+    for i in range(1,len(a)):
+        c.append(a[i])
+
+
+    c = '\n'.join(c)
+    return c
