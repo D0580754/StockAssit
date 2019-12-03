@@ -167,7 +167,7 @@ def handle_message(event):
     elif event.message.text == "股票交易基本流程": 
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/VHAAgdU.png', preview_image_url='https://imgur.com/VHAAgdU.png'))
     elif event.message.text == "股票交易基本規則":
-        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/o8WuFjh.png', preview_image_url='https://imgur.com/o8WuFjh.png'))
+        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/NTFTH3d.png', preview_image_url='https://imgur.com/o8WuFjh.png'))
     elif event.message.text == "選股知識":
         line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url='https://imgur.com/JGCG0MP.png', preview_image_url='https://imgur.com/JGCG0MP.png'))
     elif event.message.text == "技術指標":
