@@ -46,7 +46,7 @@ def basicface(name):
 def EPSBPR():
     try:
 
-        #a = datetime.datetime.today() + datetime.timedelta(-1)
+        a = datetime.datetime.today() + datetime.timedelta(-1)
         date = a.strftime('%Y%m%d')
         #date = '20191129'
         html = urlopen('http://www.tse.com.tw/exchangeReport/BWIBBU_d?response=json&date='+date+'&selectType=ALL')
