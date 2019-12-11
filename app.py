@@ -219,7 +219,7 @@ def buttons_template(): #尚未更正: 其他使用者看不到請輸入..
                 actions=[
                      MessageTemplateAction(
                         label='下單',
-                        text='請依規定格式輸入下單資料'
+                        text='請依範例格式輸入下單資料\nB/S->買賣類型\n2330.TW->股票代碼\nLMT/MKT->委託類型\n1000->委託數量\n300.5->委託價'
                     ), 
                      MessageTemplateAction(
                         label='委託紀錄',
