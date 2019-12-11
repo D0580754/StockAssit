@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import json
 import pandas as pd
+import datetime
 
 def techface(name):
     html = urlopen('http://tw.stock.yahoo.com/d/i/rank.php?t='+name+'&e=tse&n=5')
@@ -43,7 +44,9 @@ def basicface(name):
     
     return c
 def EPSBPR():
-    date = '20191108'
+    a = datetime.datetime.today()
+    date = a.strftime('%Y%m%d')
+    #date = '20191129'
     html = urlopen('http://www.tse.com.tw/exchangeReport/BWIBBU_d?response=json&date='+date+'&selectType=ALL')
     jcontent = json.loads(html.read())
     data = jcontent['data']
