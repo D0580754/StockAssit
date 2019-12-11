@@ -44,27 +44,32 @@ def basicface(name):
     
     return c
 def EPSBPR():
-    a = datetime.datetime.today()
-    date = a.strftime('%Y%m%d')
-    #date = '20191129'
-    html = urlopen('http://www.tse.com.tw/exchangeReport/BWIBBU_d?response=json&date='+date+'&selectType=ALL')
-    jcontent = json.loads(html.read())
-    data = jcontent['data']
-    data = [i for i in data if i[4]!='-']
-    Dividend_list = sorted(data , key=lambda x: float(x[2].replace(',','')),reverse=True)[:100]
-    #columns
-    df = pd.DataFrame(jcontent['data'])
-    df.columns = ['證券代號','證券名稱','殖利率(%)','股利年度','本益比',
-                    '股價淨值比','財報年/季']
-    PBR = pd.to_numeric(df['股價淨值比'], errors='coerce') < 0.7 # 找到股價淨值比小於0.7的股票
-    EPS = pd.to_numeric(df['本益比'], errors='coerce') < 10 # 找到本益比小於13的股票
-    candidate= df[(PBR & EPS)]
-    a=[]
-    for i in candidate['證券名稱']:
-        a.append(i)
+    try:
 
-    c = '\n'.join(a)
-    return c
+        #a = datetime.datetime.today() + datetime.timedelta(-1)
+        date = a.strftime('%Y%m%d')
+        #date = '20191129'
+        html = urlopen('http://www.tse.com.tw/exchangeReport/BWIBBU_d?response=json&date='+date+'&selectType=ALL')
+        jcontent = json.loads(html.read())
+        data = jcontent['data']
+        data = [i for i in data if i[4]!='-']
+        Dividend_list = sorted(data , key=lambda x: float(x[2].replace(',','')),reverse=True)[:100]
+        #columns
+        df = pd.DataFrame(jcontent['data'])
+        df.columns = ['證券代號','證券名稱','殖利率(%)','股利年度','本益比',
+                        '股價淨值比','財報年/季']
+        PBR = pd.to_numeric(df['股價淨值比'], errors='coerce') < 0.7 # 找到股價淨值比小於0.7的股票
+        EPS = pd.to_numeric(df['本益比'], errors='coerce') < 10 # 找到本益比小於13的股票
+        candidate= df[(PBR & EPS)]
+        a=[]
+        for i in candidate['證券名稱']:
+            a.append(i)
+
+        c = '\n'.join(a)
+        return c
+    except:
+        c = "目前沒有資訊"
+        return c
 def y_ield():
     html = urlopen('https://statementdog.com/screeners/dividend_yield_ranking')
     soup = BeautifulSoup(html)
